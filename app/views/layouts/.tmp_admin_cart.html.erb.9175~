@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= all_you_can_buy %></title>
+  <title><%= site_name %></title>
   <link rel="shortcut icon" href="/assets/favicon.ico" />
 
   <%= stylesheet_link_tag 'sprite.css' %>
   <%= stylesheet_link_tag "admin/foundation" %>
   <%= stylesheet_link_tag "admin/app" %>
+  <%= stylesheet_link_tag "admin/cart" %>
     <!--[if lt IE 8]
   <%#= stylesheet_link_tag 'ie.css', :media => 'screen, projection'%>
   <![endif]-->
@@ -23,33 +24,22 @@
   <%= yield :head %>
 </head>
 <body class="bp">
-  <% if notice || alert %>
-    <div class="flash_messages">
-      <%= raw "<div data-alert class='alert-box warning'> #{notice} <a href='' class='close'>&times;</a></div>"  if notice %>
-      <%= raw "<div data-alert class='alert-box alert'>#{alert} <a href='' class='close'>&times;</a></div>"     if alert %>
-    </div>
-  <% end %>
   <div class="container row">
-    <%= render :partial => 'shared/admin/header_bar' %>
-  </div>
-  <div class="container bp">
-
-    <% if  content_for? :header_sub_bar %>
-      <div id='header_sub_bar'>
-        <%= yield :header_sub_bar %>
-      </div>
+    <% if notice || alert %>
+    <div class="flash_messages">
+      <%= raw "<div data-alert class='alert-box warning'> #{notice} <a href='' class='close'>&times;</a>"  if notice %>
+      <%= raw "<div data-alert class='alert-box alert'> #{alert} <a href='' class='close'>&times;</a>"  if alert %>
+    </div>
     <% end %>
 
-  </div>
+    <%= render :partial => 'shared/admin/header_bar' %>
 
-  <div class="container" style='width:1080px;'>
-    <div class=" content last" style='width:1080px;'>
-      <div class=" column" style='<%= 'width:530px;' if  content_for? :sidebar %>'>
-        <%= yield %>
-      </div>
-      <% if  content_for? :sidebar %>
-        <%= yield :sidebar %>
-      <% end %>
+    <div class='admin_main_content eight large-8 columns'>
+      <%= yield %>
+    </div>
+    <div id='cart-right-side-panel' class='four large-4 columns last float-right'>
+      <%= render :partial => '/admin/shopping/right_panel_summary'%>
+      <%= yield :right_side_bar %>
     </div>
   </div>
 
@@ -65,5 +55,5 @@
   </script>
 
 </body>
-  <%= yield :below_body %>
+<%= yield :below_body %>
 </html>

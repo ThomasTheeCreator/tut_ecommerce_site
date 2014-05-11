@@ -7,5 +7,7 @@
 &nbsp;
 </div>
 
-
+<div id='featured_item' class='span-18 last'>
+  <%= image_tag 'home.png' %>
+</div>
 

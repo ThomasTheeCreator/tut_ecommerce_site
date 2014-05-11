@@ -8,7 +8,7 @@
 <html>
 <head>
   <title>
-    <%= content_for?(:title) ? "#{site_name}: #{yield(:title)}" : site_name %>
+    <%= content_for?(:title) ? "#{all_you_can_buy}: #{yield(:title)}" : all_you_can_buy %>
   </title>
   <link rel="shortcut icon" href="/assets/favicon.ico" />
 
@@ -48,7 +48,7 @@
 
     <div id='content_wrapper' class='row <%= "myaccount" if myaccount_tab %> '>
       <%  if myaccount_tab %>
-        <h1 style='text-align:center;'><%= site_name %></h1>
+        <h1 style='text-align:center;'><%= all_you_can_buy %></h1>
         <hr class="first_double_hr">
         <hr class="second_double_hr">
         <%= render :partial => '/shared/myaccount_subheader' %>
